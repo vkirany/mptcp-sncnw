@@ -1,0 +1,18 @@
+% ###########################################################################
+\section{Introduction}
+\label{sec:introduction}
+% ###########################################################################
+Today, mobile devices such as smartphones and tablets are equipped with two interfaces: a WLAN and a mobile broadband
+(e.g., 3G/4G). However, applications currently
+exploits only one of these interfaces whereas using both interfaces simultaneously may offer a
+better service for the user in terms of increased throughput and/or reduced
+latency. To enable such efficient resource usage, multi-path transport protocols
+are currently being deployed. One example is the Multi-path TCP
+(MPTCP)~\cite{RFC6824} that was recently proposed as an extension to
+TCP~\cite{RFC793} to enable the use of multiple paths between two end-hosts
+for the transmission of a single data stream.
+
+In today's internet, we observe an increased number of interactive applications
+that are extremely sensitive to latency, such as web transfers, streaming and online gaming. In such applications, the user's experience is affected significantly when data delivery suffers delay. To the best of our knowledge, this is the first paper that investigates the potential benefits of using multiple paths to reduce latency in order to improve user experience.
+
+This paper is part of a larger study that assesses the potential latency reduction by leveraging multipath transport protocols. While the study discusses and evaluates the performance of different multipath protocols considering various delay sensitive applications, we limit the discussion in this paper to the latency performance of MPTCP for web traffic.

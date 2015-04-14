@@ -1,0 +1,169 @@
+% ------ IEEEtran Style -----------------------------------
+% ~~~~~~ Small margins ~~~~~~~~~~~~~~~~
+%\documentclass[10pt,conference,english]{IEEEtran}
+% ~~~~~~ Large margins ~~~~~~~~~~~~~~~~
+\documentclass[conference,a4paper]{IEEEtran}
+%\usepackage[textwidth=7.1in]{geometry}
+
+% ------ IEEE/CS LaTeX8 Style -----------------------------
+% \documentclass[a4paper,10pt,twocolumn,english]{article}
+% \usepackage{latex8}
+% \usepackage{times}  % Makes text more compact!
+
+% ------ IEEE 6x9 Style -----------------------------------
+% \documentclass[a4paper,english]{article}
+% \usepackage{ieee6x9}
+% \usepackage{times}
+
+% ------ IEEE Style ---------------------------------------
+% \documentclass[english]{ieee}
+% \setlength\paperheight{297mm}
+% \setlength\paperwidth{210mm}
+
+% ------ Springer -----------------------------------------
+% \documentclass[a4paper,english]{llncs}
+
+% ------ ACM Style ----------------------------------------
+% \documentclass[a4paper,english]{acm_proc_article-sp}   % Standard
+% \documentclass[a4paper,english]{sig-alternate}    % Alternativ
+% % ------ No ACM permission block ------
+% \makeatletter
+% \let\@copyrightspace\relax
+% \makeatother
+
+% ------ Informatik Aktuell Style -------------------------
+% \documentclass[a4paper,english]{inf-akt}   % Standard
+% \usepackage{times}
+
+
+% ------ Basic Packages -----------------------------------------------------
+\usepackage[utf8]{inputenc}   % Does not work for Informatik Aktuell style!
+\usepackage{url}
+\urlstyle{rm}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{todonotes}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{relsize}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{exmp}{Example}[section]
+\interdisplaylinepenalty=2500
+\usepackage{amssymb}
+
+%\usepackage{babel}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{xcolor}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{black}{rgb}{0,0,0}
+
+
+% ------ Hyperref -----------------------------------------------------------
+\usepackage[draft=true,    % <<--- set to ``true'' for IEEExlore and EDAS!
+  pdfpagemode=UseOutlines,
+  plainpages=false,
+  hypertexnames=true,
+  pdfpagelabels=true,
+  hyperindex=true,
+  colorlinks=true]{hyperref}
+% NOTE: Set PDF metadata here, not at \usepackage! Otherwise, there output
+%       for non-ASCII characters (äöüÄÖÜßæøåÆØÅ, etc.) will be just garbage!
+\hypersetup{colorlinks,
+  pdftitle={Reducing Latency using Multi-path},
+  pdfauthor={xxx},
+  pdfsubject={xxx},
+  pdfkeywords={xxx},
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+  filecolor=black
+}
+% NOTE: Deactivate hyperrefs (by setting draft=true) for submission to
+%       EDAS and IEEExlore! These systems do not accept PDF hyperrefs and
+%       bookmarks.
+
+% ------ Listings -----------------------------------------------------------
+\usepackage{listings,color}
+\definecolor{listingbackgroundcolor}{rgb}{1,1,0.80}
+\definecolor{listingkeywordcolor}{rgb}{.6,.1,.1}
+\definecolor{listingcommentcolor}{rgb}{0,0,1}
+\lstset{language=C++,
+  numbers=left,
+  basicstyle=\small,
+  backgroundcolor=\color{listingbackgroundcolor},
+  keywordstyle=\color{listingkeywordcolor}\textbf,
+  commentstyle=\color{listingcommentcolor}\textit,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt
+}
+
+% ------ Miscellaneous ------------------------------------------------------
+\newcommand{\noun}[1]{\textsc{#1}}
+\newcommand{\var}[1]{$\mathrm{#1}$}
+\include{Hyphenation}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\floatname{algorithm}{Algorithm}
+\pagestyle{empty}
+\makeatother
+
+% ------ Color ----------
+\newcommand{\per}[1]{\textcolor{orange}{{\sf PH: #1}}}
+\newcommand{\ozgu}[1]{\textcolor{cyan}{{\sf OA: #1}}}
+\newcommand{\simone}[1]{\textcolor{blue}{{\sf SF: #1}}}
+\newcommand{\kiran}[1]{\textcolor{green}{{\sf KY: #1}}}
+
+
+% ------ Unused Material ----------------------------------------------------
+\newif\ifunusedshow
+%\unusedshowfalse
+\unusedshowtrue
+
+\begin{document}
+
+
+\title{Reducing Transport Latency using Multi-path Protocols}
+
+\author{\IEEEauthorblockN{Per Hurtig$^{\mathlarger{\dag}}$, \"{O}zg\"{u} Alay$^{\mathlarger{\ast}}$, Simone Ferlin-Oliveira$^{\mathlarger{\ast}}$, Kiran Yedugundla$^{\mathlarger{\dag}}$}
+\IEEEauthorblockA{$^{\dag}$Karlstad University, $^{\ast}$Simula Research Laboratory\\
+Email: \{perhurt, kirayedu\}@kau.se, \{ozgu,ferlin\}@simula.no}}
+
+\maketitle
+
+
+\begin{abstract}
+In this paper, we have considered web traffic and investigated whether multipath
+protocols can be utilized to reduce the transport latency. We evaluated the
+latency performance of Multipath TCP compared to TCP both in emulations as well
+as real-world experiments.
+\end{abstract}
+
+\input{introduction}
+
+\input{web-multipath}
+
+\input{setup-results}
+
+\input{conclusion}
+
+% ###########################################################################
+%\section*{Acknowledgments}
+% ###########################################################################
+
+%The authors are funded by the European Community under its Seventh Framework
+%Programme through the Reducing Internet Transport Latency~(RITE)
+%project~(ICT-317700). The views expressed are solely those of the authors.
+
+%\per{the references looks messy, might need a bit of a cleanup}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
