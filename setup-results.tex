@@ -2,40 +2,39 @@
 \section{Experimental Setup }
 \label{sec:exp-setup}
 % ###########################################################################
-This section describes the experimental setup and presents the results comparing
-the Linux implementations of TCP and MPTCP for transporting web traffic. We
+This section describes the experimental setup used. We
 evaluated the performance of each protocol through emulations, identifying the impact of various network
-parameters in both homogeneous and heterogeneous scenarios. 
+parameters in both homogeneous and heterogeneous network scenarios. 
 
 For the emulations, we use the Common Open Research Emulator (CORE)~\cite{CORE}. The setup consists of
 two end-hosts, one acting as a mobile device equipped with two interfaces and the other as a web server. To reach the
 server, each interface of the mobile client is connected to an (emulated) access network of the corresponding technology.
 
 To evaluate the effect of having both homogeneous and heterogeneous network access we performed 3 sets
-of experiments where the interfaces used a combination of WLAN and 3G access (i.e., WLAN-WLAN, WLAN-3G, 3G-3G).
+of experiments where the interfaces used a combination of emulated WLAN and 3G access (i.e., WLAN-WLAN, WLAN-3G, 3G-3G).
 The capacity of the WLAN was randomly chosen in the range 20-30Mbps, whereas for 3G we use values in the range of 3-5Mbps.
-The propagation delays are chosen in the range of 20-25ms and 65-75ms for WLAN and 3G, respectively. To be realistic
-we consider a random loss of $1-2\%$ in the WLAN access.
+The propagation delays are chosen in the range of 20-25ms and 65-75ms for WLAN and 3G, respectively. In the WLAN access
+we consider a random loss of $1-2\%$.
 
 For each experiment, the server stores a small set of files from three different classes
-of websites: Wikipedia, Amazon and Huffpost. Each website contains different number of objects of different sizes.
+of websites: Wikipedia, Amazon and Huffpost. Each website contains a different number of objects of different sizes.
 Of the three, Wikipedia was the smallest ($15$ objects, $72$Kb total size) followed by Amazon ($54$ objects, $1$Mb total size)
 and then Huffpost ($138$ objects, $3.9$Mb total size). The sites were then requested and downloaded from the mobile
 client using six concurrent connections each using TCP or MPTCP, in respective experiments. We repeat the experiment with 30 random
-network settings and we call each such repetition a Run. 
+network settings, drawn from the specified parameter ranges, and we call each such repetition a Run. 
 
 
 There is a significant impact of the congestion level on the behavior of congestion control protocols~\cite{ha-background-traffic-comnet-2007}.
 We therefore conduct experiments both without and with background traffic.  The background traffic is a mix of TCP and UDP flows constituting one
 long TCP flow and 4 UDP flows. The aggregate usage of UDP background flows maintained at 10\% of the bottleneck link capacity to be more realistic.
-The UDP flows carry data at 500kbps each in the WLAN-WLAN scenario and 100kbps each in the 3G-3G scenario.  In each run, the background flows
+The UDP flows carry data at an average of 500kbps each in the WLAN-WLAN scenario and 100kbps each in the 3G-3G scenario.  In each run, the background flows
 start before the foreground experimental traffic and end after the experimental traffic.
 
 
 
 As mentioned in section~\ref{sec:introduction}, our goal is to understand the effect of MPTCP transport on user experience. End to end flow completion time
 is the significant contributor of the latency thereby affecting the user experience.  We define the user experience of web browsing as the time 
-needed to download a web page, hence, we measure the average flow completion time for each class of web page.
+needed to download a web page, hence, we measure the average web page completion time for each class of web page.
 
 
 
@@ -101,8 +100,9 @@ needed to download a web page, hence, we measure the average flow completion tim
 \end{figure*}
 
 
-
-Figure~\ref{fig:web} shows the average transfer times for web traffic, with standard deviation over $30$ repetitions for 
+This section presents the results comparing
+the Linux implementations of TCP and MPTCP for transporting web traffic.
+Figure~\ref{fig:web} shows the average transfer times for web traffic, with standard deviation, over $30$ repetitions for 
 each configuration without background traffic. Each figure depicts the average transfer time when using MPTCP, 
 TCP on one of the interfaces (TCP1, TCP2), or TCP on the best available interface (MinTCP); the results are grouped according
 to the emulated access networks used (WLAN-WLAN/3G-3G/WLAN-3G). We observe that MPTCP cannot reduce transfer times for the Wikipedia site, 
@@ -174,13 +174,13 @@ As expected, the download times are higher in the background case due to competi
 \end{minipage}
 \end{figure}
 
-Further we analyze the percent share of traffic on each path for all scenarios. Figures~\ref{fig:web-pshare} and~\ref{fig:web-pshare-bg} reflects the 
+Further we analyze the percent share of traffic on each path for all scenarios. Figures~\ref{fig:web-pshare} and~\ref{fig:web-pshare-bg} reflect the 
 share of data downloaded on each interface in no background traffic and with background traffic scenarios respectively. This analysis provides insight
 in understanding the improvement or degradation of performance in the operational use of MPTCP in all scenarios. In the case of no background traffic,
 the data is split between two paths for all scenarios. This is due to the fact that there is not enough data to transfer compared to the capacity of the
 link. The packet scheduler of MPTCP uses the path with lowest RTT in its default setting. WLAN being significantly faster than 3G, should transfer more share 
 of data in asymmetric scenario. But the considerable split of data usage on 3G is due to the losses in WLAN and some of the flows being extremely
-slow to wait for the WLAN RTT estimate recovery after loss.
+slow while waiting for the WLAN RTT estimate to recover after loss.
 
 With background traffic, the percent share of data is similar to that of the no background in symmetric scenarios with significant split between paths.
 In asymmetric case, most of the data is transferred on WLAN and very little data is seen in 3G. This is due to multiple reasons including not enough data 
