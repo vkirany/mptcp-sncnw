@@ -122,6 +122,8 @@ On the contrary 3G-3G scenario has no losses in the access network that improved
 of MPTCP is not significantly lower than that of the TCP as seen in no background case. We observed two different aspects that could be reason 
 for this improvement. Primarily there were losses in the background flows that make the background TCP flow to back off at times. We also observed 
 that data split between the two interfaces is not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
+For Amazon and Huffpost, we observe similar behavior for no background and with background traffic cases in all the three scenarios. 
+As expected, the download times are higher in the background case due to competing flows. 
 
 \begin{figure*}
   \centering
@@ -161,8 +163,6 @@ that data split between the two interfaces is not even, and more than 99\% of da
   \label{fig:web-pshare-bg}
 \end{figure*}
 
-For Amazon and Huffpost, we observe similar behavior for no background and with background traffic cases in all the three scenarios. 
-As expected, the download times are higher in the background case due to competing flows. 
 
 \begin{figure}[!th]
 \begin{minipage}[t]{0.48\textwidth}
