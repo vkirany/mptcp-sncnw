@@ -1,14 +1,43 @@
 % ###########################################################################
-\section{Multi-path TCP for Web Transfer}
+\section{Multi-path TCP}
 \label{sec:transports}
 % ###########################################################################
+Multi-Path TCP~(MPTCP)~\cite{BPB11,RFC6824} is a set of of extensions to
+TCP~\cite{RFC793,RFC5681} developed by the IETF MPTCP working
+group~\cite{MPTCPWG} to enable the simultaneous use of multiple paths between
+endpoints. The motivation behind MPTCP is more efficient resource usage and
+improved user experience through improved resilience to network failure and
+higher throughput.
 
-The Internet is dominated by web traffic running on top of short-lived TCP connections~\cite{Labovitz-IOR-2009} with
-around $95\%$ of client TCP and $70\%$ of server TCP traffic consisting of smaller than ten packets~\cite{Ciullo-IEEECL-2009}.
+To use the MPTCP extensions the initiator of a connection appends a
+``Multipath Capable''~(MP\_CAPABLE) option in the SYN segment, indicating its support for
+MPTCP. When the connection is established, it is possible to add one
+TCP flow, or subflow, per available interface to this connection by using a ``MPTCP Join''~(MP\_JOIN)
+option in the SYN segment. Once the MPTCP connection has been fully established, both end hosts can
+send data over any of the available subflows. While MPTCP transparently
+divides user data among the subflows, simultaneous transmission may cause
+connection-level packet reordering at the receiver. To handle such reordering,
+two levels of sequence numbers are used. Apart from the regular TCP sequence
+numbers that are used to ensure in-order delivery at subflow level, MPTCP uses a
+64-bit data sequence number that spans the entire MPTCP connection and can be
+used to order data arriving at the receiver.
 
-The quality of user experience when accessing a web page is linked to the download time of the corresponding short-lived flow. As an example,
-in~\cite{why-latency-matters-2013}, the authors report that Google measured ``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
-$25\%$ drop in the number of searches done by users.''
+MPTCP also extends the standard TCP congestion control, as running existing TCP
+congestion control algorithms independently would give MPTCP connections more
+than their fair share of the capacity if a bottleneck is shared by two or more of its
+subflows. To solve this MPTCP uses a coupled congestion control~\cite{rfc6356}
+that links the increase functions of each subflows' congestion control and
+dynamically controls the overall aggressiveness of the MPTCP connection. The
+coupled congestion control also makes resource usage more efficient as it steers
+traffic away from more congested path to less congested paths.
+
+In addition to better resource usage, a goal of MPTCP is to increase
+resilience to network failures. By design, the use of multiple paths implicitly
+increases resilience as transmission is spread over different paths and the fact
+that a path failure can be circumvented by considering other subflows for
+transmission. To further improve resilience MPTCP allows senders to retransmit
+lost segments on a different subflow. This retransmission strategy enables
+moving data from a path that breaks during transmission.
 
 MPTCP is able to schedule web objects on different paths simultaneously. Therefore, MPTCP can deliver objects on one path even if the other path
 experiences loss or excessive buffering. We therefore believe that MPTCP is a good candidate to transport this type of traffic.

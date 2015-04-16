@@ -1,11 +1,59 @@
 % ###########################################################################
-\section{Experimental Setup and Results}
-\label{sec:evaluation_presentation}
+\section{Experimental Setup }
+\label{sec:exp_setup}
 % ###########################################################################
 This section describes the experimental setup and presents the results comparing
 the Linux implementations of TCP and MPTCP for transporting web traffic. We
 evaluated the performance of each protocol through emulations, identifying the impact of various network
 parameters in both homogeneous and heterogeneous scenarios. 
+
+For the emulations, we use the Common Open Research Emulator (CORE)~\cite{CORE}. The setup consists of
+two end-hosts, one acting as a mobile device equipped with two interfaces and the other as a web server. To reach the
+server, each interface of the mobile client is connected to an (emulated) access network of the corresponding technology.
+
+To evaluate the effect of having both homogeneous and heterogeneous network access we performed 3 sets
+of experiments where the interfaces used a combination of WLAN and 3G access (i.e., WLAN-WLAN, WLAN-3G, 3G-3G).
+The capacity of the WLAN was randomly chosen in the range 20-30Mbps, whereas for 3G we use values in the range of 3-5Mbps.
+The propagation delays are choosen in the range of 20-25ms and 65-75ms for WLAN and 3G, respectively. To be realistic
+we consider a random loss of $1-2\%$ in the WLAN access.
+
+For each experiment, the server stores a small set of files from three different classes
+of websites: Wikipedia, Amazon and Huffpost. Each website contains different number of objects of different sizes.
+Of the three, Wikipedia was the smallest ($15$ objects, $72$Kb total size) followed by Amazon ($54$ objects, $1$Mb total size)
+and then Huffpost ($138$ objects, $3.9$Mb total size). The sites were then requested and downloaded from the mobile
+client using six concurrent connections each using TCP or MPTCP, in respective experiments.
+
+
+There is a significant impact of the congestion level on the behavior of congestion control protocols~\cite{ha-background-traffic-comnet-2007}.
+We therefore conduct experiments both without and with background traffic.  The background traffic is a mix of TCP and UDP flows constituting one
+long TCP flow and 4 UDP flows. The aggregate usage of background flows maintained at 10\% of the bottleneck link capacity to be more realistic.
+The UDP flows carry data at 500kbps each in the WLAN-WLAN scenario and 100kbps each in the 3G-3G scenario.  In each run, the background flows
+start before the foreground experimental traffic and end after the experimental traffic.
+
+
+
+We define the user experience of web browsing as the time needed to download a web page, hence, we measure the average flow completion
+time for each class of web page.
+
+
+
+
+
+
+
+
+
+
+
+% ###########################################################################
+\section{Experimental Results }
+\label{sec:exp_results}
+% ###########################################################################
+
+
+
+
+
 
 \begin{figure*}
   \centering
@@ -58,30 +106,6 @@ parameters in both homogeneous and heterogeneous scenarios.
   \label{fig:web-bg}
 \end{figure*}
 
-For the emulations, we use the Common Open Research Emulator (CORE)~\cite{CORE}. The setup consists of 
-two end-hosts, one acting as a mobile device equipped with two interfaces and the other as a web server. To reach the
-server, each interface of the mobile client is connected to an (emulated) access network of the corresponding technology. 
-
-To evaluate the effect of having both homogeneous and heterogeneous network access we performed 3 sets 
-of experiments where the interfaces used a combination of WLAN and 3G access (i.e., WLAN-WLAN, WLAN-3G, 3G-3G). 
-The capacity of the WLAN was randomly chosen in the range 20-30Mbps, whereas for 3G we use values in the range of 3-5Mbps. 
-The propagation delays are choosen in the range of 20-25ms and 65-75ms for WLAN and 3G, respectively. To be realistic
-we consider a random loss of $1-2\%$ in the WLAN access.
-
-For each experiment, the server stores a small set of files from three different classes
-of websites: Wikipedia, Amazon and Huffpost. Each website contains different number of objects of different sizes. 
-Of the three, Wikipedia was the smallest ($15$ objects, $72$Kb total size) followed by Amazon ($54$ objects, $1$Mb total size) 
-and then Huffpost ($138$ objects, $3.9$Mb total size). The sites were then requested and downloaded from the mobile 
-client using six concurrent connections each using TCP or MPTCP, in respective experiments.
-
-We define the user experience of web browsing as the time needed to download a web page, hence, we measure the average flow completion 
-time for each class of web page.
-
-There is a significant impact of the congestion level on the behavior of congestion control protocols~\cite{ha-background-traffic-comnet-2007}. 
-We therefore conduct experiments both without and with background traffic.  The background traffic is a mix of TCP and UDP flows constituting one 
-long TCP flow and 4 UDP flows. The aggregate usage of background flows maintained at 10\% of the bottleneck link capacity to be more realistic. 
-The UDP flows carry data at 500kbps each in the WLAN-WLAN scenario and 100kbps each in the 3G-3G scenario.  In each run, the background flows 
-start before the foreground experimental traffic and end after the experimental traffic.
 
 
 Figure~\ref{fig:web} shows the average transfer times for web traffic, with standard variation over $30$ repetitions for 

@@ -18,3 +18,11 @@ that are extremely sensitive to latency, such as web transfers, streaming and on
 To the best of our knowledge, this is the first research effort that investigates the potential benefits of using multiple paths to reduce latency in order to improve user experience.
 
 This paper is part of a larger study that assesses the potential latency reduction by leveraging multipath transport protocols. While the study discusses and evaluates the performance of different multipath protocols considering various delay sensitive applications, we limit the discussion in this paper to the latency performance of MPTCP for web traffic.
+
+The Internet is dominated by web traffic running on top of short-lived TCP connections~\cite{Labovitz-IOR-2009} with
+around $95\%$ of client TCP and $70\%$ of server TCP traffic consisting of smaller than ten packets~\cite{Ciullo-IEEECL-2009}.
+
+The quality of user experience when accessing a web page is linked to the download time of the corresponding short-lived flow. As an example,
+in~\cite{why-latency-matters-2013}, the authors report that Google measured ``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
+$25\%$ drop in the number of searches done by users.''
+
