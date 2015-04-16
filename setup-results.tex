@@ -101,6 +101,44 @@ no background case. In the asymmetric scenario (WLAN-3G) the performance of MPTC
 seen in no background case. The reason could be the random losses WLAN. However a deeper study on the percentage of packets 
 transfered on each of the paths is required.
 
+\begin{figure*}
+  \centering
+  \begin{tabular}{ccc}
+  \subfloat[WLAN-WLAN Scenario packet path split.\label{fig:web:pshare-wlan-wlan}]{
+   \includegraphics[width=.28\linewidth]{plots/pshare-WLAN-WLAN}
+  } &
+  \subfloat[3G-3G Scenario packet path split. \label{fig:web:pshare-3g-3g}]
+  {
+    \includegraphics[width=.28\linewidth]{plots/pshare-3G-3G}
+  } &
+  \subfloat[WLAN-3G Scenario packet path split. \label{fig:web:pshare-wlan-3g}]
+  {
+    \includegraphics[width=.28\linewidth]{plots/pshare-WLAN-3G}
+  }
+ \end{tabular}
+  \caption{MPTCP percent packets on each path without background traffic}
+  \label{fig:web-pshare}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \begin{tabular}{ccc}
+  \subfloat[WLAN-WLAN Scenario packet path split.\label{fig:web:pshare-wlan-wlan-bg}]{
+   \includegraphics[width=.28\linewidth]{plots/pshare-WLAN-WLAN-BG}
+  } &
+  \subfloat[3G-3G Scenario packet path split. \label{fig:web:pshare-3g-3g-bg}]
+  {
+    \includegraphics[width=.28\linewidth]{plots/pshare-3G-3G-BG}
+  } &
+  \subfloat[WLAN-3G Scenario packet path split. \label{fig:web:pshare-wlan-3g-bg}]
+  {
+    \includegraphics[width=.28\linewidth]{plots/pshare-WLAN-3G-BG}
+  }
+ \end{tabular}
+  \caption{MPTCP percent packets on each path with background traffic}
+  \label{fig:web-pshare-bg}
+\end{figure*}
+
 For Amazon and Huffpost cases, we observe similar behavior in all the three scenairos. As expected, the download times are higher in the background case.
 
 \begin{figure}[!th]
