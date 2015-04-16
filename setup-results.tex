@@ -27,7 +27,7 @@ network settings and we call each such repeatition a Run.
 
 There is a significant impact of the congestion level on the behavior of congestion control protocols~\cite{ha-background-traffic-comnet-2007}.
 We therefore conduct experiments both without and with background traffic.  The background traffic is a mix of TCP and UDP flows constituting one
-long TCP flow and 4 UDP flows. The aggregate usage of background flows maintained at 10\% of the bottleneck link capacity to be more realistic.
+long TCP flow and 4 UDP flows. The aggregate usage of UDP background flows maintained at 10\% of the bottleneck link capacity to be more realistic.
 The UDP flows carry data at 500kbps each in the WLAN-WLAN scenario and 100kbps each in the 3G-3G scenario.  In each run, the background flows
 start before the foreground experimental traffic and end after the experimental traffic.
 
@@ -116,11 +116,12 @@ possible head-of-line blocking effects are less prevalent.
 
 Figure \ref{fig:web-bg} illustrates the average transfer times for web traffic for emulations conducted with background traffic. 
 For Wikipedia, with background traffic the results show similar behavior in WLAN-WLAN scenario as that of the no background case. 
-There is substantial improvement in the download time in 3G-3G scenario. 
-In the asymmetric scenario (WLAN-3G) the performance of MPTCP is not significantly lower than that of the TCP as
-seen in no background case. We observed two different aspects that could be reason for this improvement. Primarily there were losses 
-in the background flows that make the background TCP flow to back off at times. We also observed that data split between the two interfaces is
-not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
+There is substantial improvement in the download time in 3G-3G scenario. We observed losses in background flows in WLAN-WLAN and not in the 
+3G-3G scenario. The WLAN access network settings further adds 1-2\% loss in the foreground traffic which could create head of line blocking. 
+On the contrary 3G-3G scenario has no losses in the access network that improved downlowd times. In the asymmetric scenario (WLAN-3G) the performance 
+of MPTCP is not significantly lower than that of the TCP as seen in no background case. We observed two different aspects that could be reason 
+for this improvement. Primarily there were losses in the background flows that make the background TCP flow to back off at times. We also observed 
+that data split between the two interfaces is not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
 
 \begin{figure*}
   \centering
@@ -177,7 +178,8 @@ Further we analyze the percent share of traffic on each paths for all scenarios.
 share of data downloaded on each interface in no background traffic and with background traffic scenarios respectively. This analysis provides insight
 in understanding the improvement or degradation of performance in the operational use of MPTCP in all scenarios. In the case of no background traffic,
 the data is split between two paths for all scenarios. This is due to the fact that there is not enough data to transfer compared to the capacity of the
-link. The packet scheduler of MPTCP uses the path with lowest RTT in its default setting. WLAN being signficantly faster than 3G, should transfer more share of data in asymmetric sceario. But the considerable split of data usage on 3G is due to the losses in WLAN and some of the flows being extremely
+link. The packet scheduler of MPTCP uses the path with lowest RTT in its default setting. WLAN being signficantly faster than 3G, should transfer more share 
+of data in asymmetric sceario. But the considerable split of data usage on 3G is due to the losses in WLAN and some of the flows being extremely
 slow to wait for the WLAN RTT estimate recovery after loss.
 
 With background traffic, the percent share of data is similar to that of the no background in symmetric scenarios with significant split between paths.
@@ -186,4 +188,5 @@ to transfer at WLAN rates making it impossible to switch to 3G, losses in the ba
 
 In this paper, we considered different cases to observe the performance of MPTCP in terms of web traffic latency. We believe it is extremely important to
 summarize our results in a form of systematic comparison to reduce presentation complexity. In Figure \ref{fig:web-summary} we provide a comparison 
-chart of web traffic latency in using MPTCP and TCP across all scenarios. This chart covers all the cases emulated and the corresponding observations where $BG$ signifies with Background traffic. 
+chart of web traffic latency in using MPTCP and TCP across all scenarios. This chart covers all the cases emulated and the corresponding observations where $BG$ 
+signifies with Background traffic. 
