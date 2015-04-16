@@ -2,16 +2,16 @@
 \section{Multi-path TCP for Web Transfer}
 \label{sec:transports}
 % ###########################################################################
-The quality of user experience when accessing a web page is linked to the
-download time of this short-lived flow. As an example,
-in~\cite{why-latency-matters-2013}, the authors report that Google measured that
-``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
+
+The Internet is dominated by web traffic running on top of short-lived TCP connections~\cite{Labovitz-IOR-2009} with
+around $95\%$ of client TCP and $70\%$ of server TCP traffic consisting of smaller than ten packets~\cite{Ciullo-IEEECL-2009}.
+
+The quality of user experience when accessing a web page is linked to the download time of the corresponding short-lived flow. As an example,
+in~\cite{why-latency-matters-2013}, the authors report that Google measured ``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
 $25\%$ drop in the number of searches done by users.''
 
-MPTCP is able to schedule web objects on different paths simultaneously.
-Therefore, MPTCP can deliver objects on one path even if the other path
-experiences loss or excessive buffering. We therefore believe that MPTCP is a
-good candidate to transport this type of traffic.
+MPTCP is able to schedule web objects on different paths simultaneously. Therefore, MPTCP can deliver objects on one path even if the other path
+experiences loss or excessive buffering. We therefore believe that MPTCP is a good candidate to transport this type of traffic.
 
 %\per{something about why we would expect that MPTCP can help/what properties of
 %MPTCP that is potentially beneficial for this type of traffic.}
