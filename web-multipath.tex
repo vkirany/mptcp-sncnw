@@ -22,7 +22,7 @@ numbers that are used to ensure in-order delivery at subflow level, MPTCP uses a
 64-bit data sequence number that spans the entire MPTCP connection and can be
 used to order data arriving at the receiver.
 
-MPTCP also extends the standard TCP congestion control, as running existing TCP
+MPTCP also extends the standard TCP congestion control~\cite{RFC2581}, as running existing TCP
 congestion control algorithms independently would give MPTCP connections more
 than their fair share of the capacity if a bottleneck is shared by two or more of its
 subflows. To solve this MPTCP uses a coupled congestion control~\cite{rfc6356}
