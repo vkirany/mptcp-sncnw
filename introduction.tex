@@ -14,11 +14,9 @@ One example is the Multi-path TCP (MPTCP)~\cite{RFC6824} that was recently propo
 TCP~\cite{RFC793} to enable the use of multiple paths between two end-hosts for the transmission of a single data stream.
 
 In today's Internet, we observe an increased number of interactive applications that are extremely sensitive to latency, such as web transfers, 
-streaming and online gaming. In such applications, the user's experience is affected significantly when data delivery suffers delay. 
-Considering the web transfers, the Internet is dominated by web traffic running on top of short-lived TCP connections~\cite{Labovitz-IOR-2009} with
+streaming and online gaming. In such applications, the user's experience is affected significantly when data delivery experiences delay. The Internet is dominated by web traffic running on top of short-lived TCP connections~\cite{Labovitz-IOR-2009} with
 around $95\%$ of client TCP and $70\%$ of server TCP traffic consisting of smaller than ten packets~\cite{Ciullo-IEEECL-2009}.
-The quality of user experience when accessing a web page is linked to the download time of the corresponding short-lived flow. As an example,
-in~\cite{why-latency-matters-2013}, the authors report that Google measured ``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
+The quality of user experience when accessing a web page is linked to the download time of the corresponding short-lived flow. As an example~\cite{why-latency-matters-2013}, the authors report that Google measured ``an additional $500$~ms to compute (a web search) [$\ldots$] resulted in a
 $25\%$ drop in the number of searches done by users.''
 
 To the best of our knowledge, this is the first research effort that investigates the potential benefits of using multiple paths to reduce latency in order to 
@@ -26,9 +24,9 @@ improve user experience. This paper is part of a larger study that assesses the 
 While the study discusses and evaluates the performance of different multipath protocols considering various delay sensitive applications, we limit the 
 discussion in this paper to the latency performance of MPTCP for web traffic.
 
-The rest of the paper is organized as follows: In section~\ref{sec:transports}, we introduce the Multipath TCP protocol and its potential advantage in transporting
+The rest of the paper is organized as follows: In Section~\ref{sec:transports}, we introduce the Multipath TCP protocol and its potential advantage in transporting
 web traffic together with the objective of this study. Section~\ref{sec:exp-setup} discusses the experimental setup used for carrying out emulations and
-corresponding settings of significance. In section~\ref{sec:exp-results}, we present the results of our emulation experiments together with analysis.
-We conclude the paper in section~\ref{sec:conclusion} with brief summary of results and future directions to improve and strengthen our understanding of 
+corresponding settings of significance. In Section~\ref{sec:exp-results}, we present the results of our emulation experiments together with analysis.
+We conclude the paper in Section~\ref{sec:conclusion} with brief summary of results and future directions to improve and strengthen our understanding of 
 MPTCP latency performance.
 
