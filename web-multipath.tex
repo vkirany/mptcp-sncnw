@@ -39,11 +39,11 @@ transmission. To further improve resilience MPTCP allows senders to retransmit
 lost segments on a different subflow. This retransmission strategy enables
 moving data from a path that breaks during transmission.
 
-MPTCP is able to schedule web objects on different paths simultaneously. Therefore, MPTCP can deliver objects on one path even if the other path
-experiences loss or excessive buffering. We therefore believe that MPTCP is a good candidate to transport this type of traffic.
+Within the standard operation, MPTCP is able to schedule web objects on different paths simultaneously. 
+Therefore, MPTCP can deliver objects on one path even if the other path
+experiences loss or excessive buffering. We therefore believe that MPTCP is a good candidate 
+to transport this type of traffic. In this study, we aim to understand the latency performance of MPTCP
+under various plausible network and traffic scenarios in a systematic manner. In each of the scenario 
+we compare the performance with that of TCP to assess the imrpovement.
 
-%\per{something about why we would expect that MPTCP can help/what properties of
-%MPTCP that is potentially beneficial for this type of traffic.}
-
-%\ozgu{also maybe talk about the challenges of multipath, especially in heterogeneous cases, and then conclude we need to investigate and that is what we are doing! Per, I am leaving this to you :) If you like I can have a round in the evening.}
 

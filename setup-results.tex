@@ -21,7 +21,8 @@ For each experiment, the server stores a small set of files from three different
 of websites: Wikipedia, Amazon and Huffpost. Each website contains different number of objects of different sizes.
 Of the three, Wikipedia was the smallest ($15$ objects, $72$Kb total size) followed by Amazon ($54$ objects, $1$Mb total size)
 and then Huffpost ($138$ objects, $3.9$Mb total size). The sites were then requested and downloaded from the mobile
-client using six concurrent connections each using TCP or MPTCP, in respective experiments.
+client using six concurrent connections each using TCP or MPTCP, in respective experiments. We repeat the experiment with 30 random
+network settings and we call each such repeatition a Run. 
 
 
 There is a significant impact of the congestion level on the behavior of congestion control protocols~\cite{ha-background-traffic-comnet-2007}.
@@ -32,12 +33,9 @@ start before the foreground experimental traffic and end after the experimental 
 
 
 
-We define the user experience of web browsing as the time needed to download a web page, hence, we measure the average flow completion
-time for each class of web page.
-
-
-
-
+As mentioned in section~\ref{sec:introduction}, our goal is to understand the effect of MPTCP transport on user experience. End to end flow completion time
+is the significant contributor of the latency thereby affecting the user experience.  We define the user experience of web browsing as the time 
+needed to download a web page, hence, we measure the average flow completion time for each class of web page.
 
 
 
@@ -49,10 +47,6 @@ time for each class of web page.
 \section{Experimental Results }
 \label{sec:exp-results}
 % ###########################################################################
-
-
-
-
 
 
 \begin{figure*}
@@ -121,8 +115,9 @@ possible head-of-line blocking effects are less prevalent.
 
 
 Figure \ref{fig:web-bg} illustrates the average transfer times for web traffic for emulations conducted with background traffic. 
-For Wikipedia, with background traffic the results show similar behavior in the symmetric scenarios (WLAN-WLAN,3G-3G) as that of the 
-no background case. In the asymmetric scenario (WLAN-3G) the performance of MPTCP is not significantly lower than that of the TCP as
+For Wikipedia, with background traffic the results show similar behavior in WLAN-WLAN scenario as that of the no background case. 
+There is substantial improvement in the download time in 3G-3G scenario. 
+In the asymmetric scenario (WLAN-3G) the performance of MPTCP is not significantly lower than that of the TCP as
 seen in no background case. We observed two different aspects that could be reason for this improvement. Primarily there were losses 
 in the background flows that make the background TCP flow to back off at times. We also observed that data split between the two interfaces is
 not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
