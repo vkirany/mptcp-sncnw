@@ -75,6 +75,7 @@ needed to download a web page, hence, we measure the average web page completion
 %    \includegraphics[width=.32\linewidth]{plots/huffpost_avgDelayWBG}
 %  }
   \end{tabular}
+  \vspace*{-5pt} 
   \caption{Average web transfer delay, with standard deviation.}
   \label{fig:web}
 \end{figure*}
@@ -95,6 +96,7 @@ needed to download a web page, hence, we measure the average web page completion
     \includegraphics[width=.28\linewidth]{plots/huffpost_avgDelayWBG}
   }
  \end{tabular}
+  \vspace*{-5pt}
   \caption{With background flows: Average web transfer delay, with standard deviation.}
   \label{fig:web-bg}
 \end{figure*}
@@ -122,7 +124,9 @@ On the contrary 3G-3G scenario has no losses in the access network that improved
 of MPTCP is not significantly lower than that of the TCP as seen in no background case. We observed two different aspects that could be reason 
 for this improvement. Primarily there were losses in the background flows that make the background TCP flow to back off at times. We also observed 
 that data split between the two interfaces is not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
-For Amazon and Huffpost, we observe similar behavior for no background and with background traffic cases in all the three scenarios. 
+In Amazon case, there is no improvement with MPTCP in WLAN-WLAN without background traffic though the mean download time is less than that of TCP, the 
+standard deviation is large. Random losses in WLAN settings of different runs can cause such large variability. However there is a slight improvement with MPTCP in the 
+case with background traffic. For Huffpost, we observed similar behavior for no background and with background traffic cases in all the three scenarios. 
 As expected, the download times are higher in the background case due to competing flows. 
 
 \begin{figure*}
@@ -161,17 +165,20 @@ As expected, the download times are higher in the background case due to competi
  \end{tabular}
   \caption{MPTCP percent packets on each path with background traffic.}
   \label{fig:web-pshare-bg}
+\vspace{-1.5em}
 \end{figure*}
 
 
 \begin{figure}[!th]
 \begin{minipage}[t]{0.48\textwidth}
 \begin{center}
-\includegraphics[trim= 3cm 3.5cm 3cm 3cm, clip=true, width=.98\linewidth]{plots/MPTCP-Web}
+\includegraphics[trim= 3cm 3.25cm 3cm 3cm, clip=true, width=.98\linewidth]{plots/MPTCP-Web}
 \end{center}
+
 \caption{Comparison of web traffic latency using MPTCP and TCP.}
   \label{fig:web-summary}
 \end{minipage}
+\vspace{-2.0em}
 \end{figure}
 
 Further, we analyze the percent share of traffic on each path for all scenarios. Figures~\ref{fig:web-pshare} and~\ref{fig:web-pshare-bg} reflect the 
