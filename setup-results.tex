@@ -117,17 +117,20 @@ possible head-of-line blocking effects are less prevalent.
 
 
 Figure \ref{fig:web-bg} illustrates the average transfer times for web traffic for emulations conducted with background traffic. 
-For Wikipedia, with background traffic the results show similar behavior in WLAN-WLAN scenario as that of the no background case. 
-There is substantial improvement in the download time in 3G-3G scenario. We observed losses in background flows in WLAN-WLAN and not in the 
-3G-3G scenario. The WLAN access network settings further add 1-2\% loss in the foreground traffic which could create head of line blocking. 
-On the contrary 3G-3G scenario has no losses in the access network that improved download times. In the asymmetric scenario (WLAN-3G) the performance 
-of MPTCP is not significantly lower than that of the TCP as seen in no background case. We observed two different aspects that could be reason 
-for this improvement. Primarily there were losses in the background flows that make the background TCP flow to back off at times. We also observed 
-that data split between the two interfaces is not even, and more than 99\% of data transferred on the WLAN interface resulting in lower head of line blocking.
+For Wikipedia, with background traffic the results show similar behavior in WLAN-WLAN scenario as that of the no background case. We observe
+lower flow completion times for Wikipedia in the case with background traffic than that of the case without background traffic. This non trivial
+behavior can be attributed to the random losses in the WLAN links. There is substantial improvement in the download time in 3G-3G scenario. 
+We observed losses in background flows in WLAN-WLAN and not in the 3G-3G scenario. The WLAN access network settings further add 1-2\% loss in the 
+foreground traffic which could create head of line blocking. On the contrary 3G-3G scenario has no losses in the access network that improved download times. 
+In the asymmetric scenario (WLAN-3G) the performance of MPTCP degraded significantly lower than that of the TCP. We observed two different aspects 
+that could be reason for MPTCP poor performance. Primarily there were losses in the WIFI foreground flows that make the MPTCP to select 3G link though
+there is significant delay variance between the two links. This could create out of order delivery of data and thereby increasing the flow completion time. 
+
 In Amazon case, there is no improvement with MPTCP in WLAN-WLAN without background traffic though the mean download time is less than that of TCP, the 
 standard deviation is large. Random losses in WLAN settings of different runs can cause such large variability. However there is a slight improvement with MPTCP in the 
-case with background traffic. For Huffpost, we observed similar behavior for no background and with background traffic cases in all the three scenarios. 
-As expected, the download times are higher in the background case due to competing flows. 
+case with background traffic. For Huffpost, we observed similar behavior for no background and with background traffic cases in the symmetric scenarios. In WLAN-3G
+scenario, both Amazon and Huffpost downloads with MPTCP provided worse performance than the that of TCP on WLAN. MPTCP uses WLAN links for most of the time and 3G links
+whenever it encounters loss in WLAN. The loss events could trigger in out of order delivery of data and increase the flow completion time compared to using WLAN alone. 
 
 \begin{figure*}
   \centering
@@ -172,7 +175,7 @@ As expected, the download times are higher in the background case due to competi
 \begin{figure}[!th]
 \begin{minipage}[t]{0.48\textwidth}
 \begin{center}
-\includegraphics[trim= 3cm 3.25cm 3cm 3cm, clip=true, width=.98\linewidth]{plots/MPTCP-Web}
+\includegraphics[trim= 2.5cm 2cm 3cm 3cm, clip=true, width=.98\linewidth]{plots/MPTCP-Web}
 \end{center}
 
 \caption{Comparison of web traffic latency using MPTCP and TCP.}
@@ -191,7 +194,7 @@ slow while waiting for the WLAN RTT estimate to recover after loss.
 
 With background traffic, the percent share of data is similar to that of the no background in symmetric scenarios with significant split between paths.
 In asymmetric case, most of the data is transferred on WLAN and very little data is seen in 3G. This is due to multiple reasons including not enough data 
-to transfer at WLAN rates making it impossible to switch to 3G, losses in the background flows, and no losses in the foreground flows.
+to transfer at WLAN rates making it impossible to switch to 3G, losses in the background flows.
 
 In this paper, we considered different cases to observe the performance of MPTCP in terms of web traffic latency. We believe it is extremely important to
 summarize our results in a form of systematic comparison to reduce presentation complexity. In Figure \ref{fig:web-summary}, we provide a comparison 
