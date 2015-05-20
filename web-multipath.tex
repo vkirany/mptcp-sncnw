@@ -2,14 +2,14 @@
 \section{Multi-path TCP}
 \label{sec:transports}
 % ###########################################################################
-Multi-Path TCP~(MPTCP)~\cite{RFC6824} is a set of of extensions to
+Multi-Path TCP~(MPTCP)~\cite{RFC6824} is a set of extensions to
 TCP~\cite{RFC793,RFC5681} developed by the IETF MPTCP working
 group~\cite{MPTCPWG} to enable the simultaneous use of multiple paths between
-endpoints. The motivation behind MPTCP is more efficient resource usage and
+endpoints. The motivation behind MPTCP is efficient resource usage and
 improved user experience through improved resilience to network failure and
 higher throughput.
 
-To use the MPTCP extensions the initiator of a connection appends a
+To use the MPTCP extensions, the initiator of a connection appends a
 ``Multipath Capable''~(MP\_CAPABLE) option in the SYN segment, indicating its support for
 MPTCP. When the connection is established, it is possible to add one
 TCP flow, or subflow, per available interface to this connection by using a ``MPTCP Join''~(MP\_JOIN)
